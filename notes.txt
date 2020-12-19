@@ -1,0 +1,79 @@
+# dev use H2 DB: /var/tmp/ez_music_workspace/data/h2.db (h2.db.mv.db)
+# db console: http://localhost:8080/h2-console (defined in application-dev.properties)
+# JDBC URL = jdbc:h2:file:/var/tmp/ez_music_workspace/data/h2.db
+# username: admin
+# password: admin
+# DB Init: https://dimitr.im/loading-initial-data-with-spring
+
+
+
+
+# Install and start local postgres server
+brew install postgresql
+brew "services" "start" "postgresql"
+$ psql postgres
+postgres=# CREATE ROLE admin WITH LOGIN PASSWORD 'admin';
+CREATE ROLE
+postgres=# ALTER ROLE admin CREATEDB;
+ALTER ROLE
+# same as "createuser admin --createdb"
+
+postgres=# \du
+                                   List of roles
+ Role name |                         Attributes                         | Member of
+-----------+------------------------------------------------------------+-----------
+ admin     | Create DB                                                  | {}                                                        | {}
+
+# Login with admin user
+$ psql postgres -U admin
+
+postgres=> CREATE DATABASE ezmusic;
+CREATE DATABASE
+
+postgres=> GRANT ALL PRIVILEGES ON DATABASE ezmusic TO admin;
+GRANT
+
+postgres=> \list ezmusic
+                        List of databases
+  Name   | Owner | Encoding | Collate | Ctype | Access privileges
+---------+-------+----------+---------+-------+-------------------
+ ezmusic | admin | UTF8     | C       | C     | =Tc/admin        +
+         |       |          |         |       | admin=CTc/admin
+(1 row)
+
+
+# same as "createdb ezmusic -U admin"
+
+postgres=> \connect ezmusic;
+You are now connected to database "ezmusic" as user "admin".
+ezmusic=>
+
+
+
+
+# Heroku postgre database
+$ heroku config -a ez-music-app
+DATABASE_URL            => postgres://foo:foo@heroku.com:5432/hellodb
+
+$ heroku run echo \$JDBC_DATABASE_URL -a ez-music-app
+$ heroku run echo \$JDBC_DATABASE_USERNAME -a ez-music-app
+$ heroku run echo \$JDBC_DATABASE_PASSWORD -a ez-music-app
+
+# Connect heroku postgre database
+# Find info at: https://data.heroku.com/datastores/8f61fdf8-5d41-4c19-9ce8-0e9e8a300330#administration
+$ psql -h HOSTNAME -d DATABASE -U USER -p PORT
+prompt for password:
+
+
+
+
+# React frontend
+cd src/main/react/frontend
+
+# put the proxy in package.json, which is the sprint boot backend
+"proxy": "http://localhost:8080"
+
+yarn install
+yarn start
+# open browser (http://localhost:3000)
+
