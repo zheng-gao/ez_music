@@ -22,3 +22,8 @@ src/main/react/frontend/build
 src/main/react/frontend/node_modules
 src/main/react/frontend/.eslintcache
 
+###############################################################################
+# control.sh
+###############################################################################
+dev_workspace
+

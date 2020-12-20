@@ -23,6 +23,8 @@ REQUIRED_COMMANDS+=("git")
 REQUIRED_COMMANDS+=("java")
 # Maven Command
 REQUIRED_COMMANDS+=("mvn")
+# Yarn Command
+REQUIRED_COMMANDS+=("yarn")
 
 # Verify the required commands
 function command_exist() {
@@ -44,8 +46,7 @@ fi
 ###################################################################################################
 # --------------------------------------- DEV Environment  -------------------------------------- #
 ###################################################################################################
-PROJECT_NAME="ez_music"
-DEV_WORKSPACE="/var/tmp/${PROJECT_NAME}_workspace"; [[ ! -d "${DEV_WORKSPACE}" ]] && mkdir -p "${DEV_WORKSPACE}"
+DEV_WORKSPACE="${BASE_DIRECTORY}/dev_workspace"; [[ ! -d "${DEV_WORKSPACE}" ]] && mkdir -p "${DEV_WORKSPACE}"
 DEV_LOGS="${DEV_WORKSPACE}/logs"; [[ ! -d "${DEV_LOGS}" ]] && mkdir -p "${DEV_LOGS}"
 DEV_DATA="${DEV_WORKSPACE}/data"; [[ ! -d "${DEV_DATA}" ]] && mkdir -p "${DEV_DATA}"
 DEV_LOG_FILE="${DEV_LOGS}/app.log"
