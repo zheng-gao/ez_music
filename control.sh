@@ -364,7 +364,7 @@ function control_heroku() {
         git "remote" "add" "heroku" "https://git.heroku.com/${heroku_app_name}.git"
     fi
     # heroku "create" "${heroku_app_name}"
-    control_config --set-profile "stg-heroku"
+    control_config --profile "stg-heroku"
     ez_print_log -m "Pushing code to heroku ..."
     if git "push" "heroku" "master"; then
         ez_print_log -m "Open heroku website ..."
