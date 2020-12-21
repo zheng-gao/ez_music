@@ -93,3 +93,6 @@ Scaling dynos... done, now running web at 1:Free
 
 # Run clean in the heroku release (Procfile)
 release: ./mvnw -e -X flyway:clean && ./mvnw -e -X flyway:migrate
+
+# Run in production
+heroku local -f Procfile.prod
