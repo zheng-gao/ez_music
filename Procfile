@@ -1,1 +1,1 @@
-release: ./mvnw flyway:migrate
+release: ./mvnw -e -X flyway:migrate
