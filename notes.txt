@@ -77,3 +77,16 @@ yarn install
 yarn start
 # open browser (http://localhost:3000)
 
+
+
+2020-12-21T18:26:34.928586+00:00 heroku[router]: at=error code=H14 desc="No web processes running" method=GET path="/" host=ez-music-app.herokuapp.com request_id=6f608898-d15e-4a7b-95a6-9f5402f77c25 fwd="68.118.149.223" dyno= connect= service= status=503 bytes= protocol=https
+
+$ heroku ps
+Free dyno hours quota remaining this month: 545h 37m (99%)
+Free dyno usage for this app: 4h 22m (0%)
+For more information on dyno sleeping and how to upgrade, see:
+https://devcenter.heroku.com/articles/dyno-sleeping
+No dynos on ⬢ ez-music-app
+
+$ heroku ps:scale web=1
+Scaling dynos... done, now running web at 1:Free
