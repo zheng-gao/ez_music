@@ -366,7 +366,7 @@ function control_heroku() {
     # heroku "create" "${heroku_app_name}"
     control_config --profile "stg-heroku"
     ez_print_log -m "Pushing code to heroku ..."
-    if git "push" "heroku" "master"; then
+    if git "push" --force "heroku" "master"; then
         ez_print_log -m "Open heroku website ..."
         heroku "open"
         ez_print_log -m "To view the heroku log: heroku logs --tail"
