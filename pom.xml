@@ -157,7 +157,6 @@
         <groupId>org.flywaydb</groupId>
         <artifactId>flyway-maven-plugin</artifactId>
         <configuration>
-          <defaultSchema>public</defaultSchema>
           <baselineOnMigrate>true</baselineOnMigrate>
           <url>${env.JDBC_DATABASE_URL}</url>
           <locations>
