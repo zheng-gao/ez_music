@@ -61,7 +61,7 @@ $ heroku run echo \$JDBC_DATABASE_PASSWORD -a ez-music-app
 
 # Connect heroku postgre database
 # Find info at: https://data.heroku.com/datastores/8f61fdf8-5d41-4c19-9ce8-0e9e8a300330#administration
-$ psql -h HOSTNAME -d DATABASE -U USER -p PORT
+$ psql -h ${HOSTNAME} -d ${DATABASE} -U ${USER} -p ${PORT}
 prompt for password:
 
 
