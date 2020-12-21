@@ -160,7 +160,7 @@
           <baselineOnMigrate>true</baselineOnMigrate>
           <url>${env.JDBC_DATABASE_URL}</url>
           <locations>
-            <location>classpath:db/migration/postgre</location>
+            <location>classpath:db/schema/postgre</location>
           </locations>
         </configuration>
       </plugin>
