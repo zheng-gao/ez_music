@@ -370,7 +370,7 @@ function control_heroku() {
     if git "push" --force "heroku" "master"; then
         ez_print_log -m "Open heroku website ..."
         heroku "open"
-        ez_print_log -m "To view the heroku log: heroku logs --tail"
+        ez_print_log -m "To view the heroku log: ${COLOR_YELLOW}${BLINK}heroku logs --tail${RESET}"
     else
         ez_print_log -l "ERROR" -m "Failed to push to heroku"
     fi
