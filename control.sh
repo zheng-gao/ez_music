@@ -22,10 +22,10 @@ REQUIRED_COMMANDS+=("touch")
 REQUIRED_COMMANDS+=("git")
 # JAVA Command
 REQUIRED_COMMANDS+=("java")
-# Maven Command
-REQUIRED_COMMANDS+=("mvn")
+# Maven Command (use ./mvnw)
+# REQUIRED_COMMANDS+=("mvn")
 # Yarn Command
-REQUIRED_COMMANDS+=("yarn")
+# REQUIRED_COMMANDS+=("yarn")
 
 # Verify the required commands
 function command_exist() {
@@ -45,6 +45,7 @@ COLOR_RED="\033[0;31m"
 COLOR_YELLOW="\033[0;33m"
 COLOR_CYAN="\033[1;36m"
 
+MAVEN_CMD="${BASE_DIRECTORY}/mvnw"
 ###################################################################################################
 # --------------------------------------- DEV Environment  -------------------------------------- #
 ###################################################################################################
@@ -168,7 +169,7 @@ function control_clean() {
         # rm "${BASE_DIRECTORY}/src/main/react/frontend/package-lock.json"
         # rm "${BASE_DIRECTORY}/src/main/react/frontend/yarn.lock"
         ez_print_log -m "Cleaning maven build"
-        mvn "clean" # this will clean "${BASE_DIRECTORY}/target"
+        ${MAVEN_CMD} "clean" # this will clean "${BASE_DIRECTORY}/target"
     fi
     if [[ -z "${workspace}" ]] || [[ "${workspace}" = "logs" ]]; then
         ez_print_log -m "Cleaning logs"
@@ -183,7 +184,7 @@ function control_clean() {
 }
 
 function control_build() {
-    mvn "package"
+    ${MAVEN_CMD} "package"
     # Maven build will run flyway migration which generate duplicate data
     control_migrate --clean --profile "$(control_config --current-profile)"
 }
@@ -236,11 +237,11 @@ function control_migrate() {
     ez_print_log -m "Flyway Config: ${flyway_config}"
     cat "${flyway_config}" && echo
     if [[ -n "${info}" ]]; then
-        mvn "flyway:info" "-Dflyway.configFiles=${flyway_config}"
+        ${MAVEN_CMD} "flyway:info" "-Dflyway.configFiles=${flyway_config}"
     elif [[ -n "${clean}" ]]; then
-        mvn "flyway:clean" "-Dflyway.configFiles=${flyway_config}"
+        ${MAVEN_CMD} "flyway:clean" "-Dflyway.configFiles=${flyway_config}"
     else
-        mvn "flyway:migrate" "-Dflyway.configFiles=${flyway_config}"
+        ${MAVEN_CMD} "flyway:migrate" "-Dflyway.configFiles=${flyway_config}"
     fi
 }
 

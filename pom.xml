@@ -69,6 +69,7 @@
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
+      <version>6.4.2</version>
     </dependency>
   </dependencies>
 
@@ -157,9 +158,6 @@
         <artifactId>flyway-maven-plugin</artifactId>
         <configuration>
           <url>${env.JDBC_DATABASE_URL}</url>
-          <locations>
-            <location>classpath:db/migration/postgre</location>
-          </locations>
         </configuration>
       </plugin>
     </plugins>
