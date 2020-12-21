@@ -268,7 +268,7 @@ function control_start() {
 }
 
 function control_open() {
-    local valid_interfaces=("api" "ui") usage=""
+    local valid_interfaces=("ui" "api") usage=""
     if [[ "${1}" = "-h" ]] || [[ "${1}" = "--help" ]]; then
         usage=$(ez_build_usage -o "init" -d "Configure Environment")
         usage+=$(ez_build_usage -o "add" -a "-p|--profile" -d "[Dummy] Not Implemented")
@@ -285,7 +285,7 @@ function control_open() {
         esac
     done
     [[ -z "${interface}" ]] && interface="${valid_interfaces[0]}"
-    if [[ "${interface}" = "frontend" ]]; then
+    if [[ "${interface}" = "ui" ]]; then
         local url="http://localhost:8080"
         if command -v "open" > "/dev/null"; then open "${url}"
         else ez_print_log -m "Please open \"${url}\" in browser"; fi
