@@ -380,8 +380,8 @@ function control_heroku() {
 # ---------------------------------------- Main Function ---------------------------------------- #
 ###################################################################################################
 function control() {
-    local valid_skips=("clean" "config" "migrate" "build" "publish" "deploy" "start" "stop"
-                       "open" "db" "status" "log" "update" "heroku")
+    local valid_skips=("config" "clean" "build" "publish" "deploy" "start" "stop" "open"
+                       "migrate" "db" "status" "log" "update" "heroku")
     local valid_operations=("ALL" "${valid_skips[@]}") usage=""
     if [[ -z "${1}" ]] || [[ "${1}" = "-h" ]] || [[ "${1}" = "--help" ]]; then
         usage=$(ez_build_usage -o "init" -d "Control Project Pipeline")
@@ -420,7 +420,7 @@ function control() {
         ez_exclude "${skp}" "${valid_skips[@]}" && ez_print_log -l "ERROR" -m "Invalid skip \"${skp}\"" && return 1
     done
     if [[ "${operations[0]}" = "ALL" ]]; then
-        operations=("stop" "clean" "config" "build" "publish" "deploy" "start" "status" "open")
+        operations=("stop" "config" "clean" "build" "publish" "deploy" "start" "status" "open")
     fi
     for opt in "${operations[@]}"; do
         ez_contain "${opt}" "${skips[@]}" && ez_print_log -m "Operation \"${opt}\" is skipped!" && continue
